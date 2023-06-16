@@ -1,0 +1,33 @@
+---
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Astro</title>
+	</head>
+	<body>
+		<h1>Vas a perder perro</h1>
+		<label for="numer">Ingresa el numero perro</label>
+		<input type="number" value="0" name="number" id="number" />
+		<ol></ol>
+	</body>
+</html>
+
+<script>
+	const ol = document.querySelector("ol");
+	const input = document.querySelector("input");
+	input.addEventListener("keyup", function () {
+		const num = Number(this.value);
+		let html = "";
+		Array(Math.pow(2, num))
+			.fill(0)
+			.forEach((_, index) => {
+				html += `<li>${index.toString(2).padStart(num, "0")}</li>`;
+			});
+		ol.innerHTML = html;
+	});
+</script>
