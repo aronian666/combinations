@@ -10,24 +10,38 @@
 		<title>Astro</title>
 	</head>
 	<body>
-		<h1>Vas a perder perro</h1>
-		<label for="numer">Ingresa el numero perro</label>
-		<input type="number" value="0" name="number" id="number" />
-		<ol></ol>
+		<form>
+			<fieldset>
+				<label for="combinations">Ingresa el numero perro</label>
+				<input
+					type="number"
+					value="0"
+					name="combinations"
+					id="combinations"
+					required
+				/>
+				<button type="submit">Generar</button>
+			</fieldset>
+		</form>
+
+		<h1></h1>
 	</body>
 </html>
 
 <script>
-	const ol = document.querySelector("ol");
-	const input = document.querySelector("input");
-	input.addEventListener("keyup", function () {
-		const num = Number(this.value);
-		let html = "";
-		Array(Math.pow(2, num))
-			.fill(0)
-			.forEach((_, index) => {
-				html += `<li>${index.toString(2).padStart(num, "0")}</li>`;
-			});
-		ol.innerHTML = html;
+	const h1 = document.querySelector("h1");
+	const form = document.querySelector("form");
+	form.addEventListener("submit", function (event) {
+		event.preventDefault();
+		const num = Number(this.combinations.value);
+		const combinations = Math.pow(2, num);
+		const random = Math.floor(Math.random() * combinations);
+		h1.innerHTML = random.toString(2).padStart(num, "0");
 	});
 </script>
+
+<style>
+	fieldset {
+		display: grid;
+	}
+</style>
